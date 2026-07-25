@@ -9,8 +9,39 @@ import '../cubit/home_state.dart';
 import 'news_card_tile.dart';
 import 'news_list_shimmer.dart';
 
-class NewsListView extends StatelessWidget {
+class NewsListView extends StatefulWidget {
   const NewsListView({super.key});
+
+  @override
+  State<NewsListView> createState() => _NewsListViewState();
+}
+
+class _NewsListViewState extends State<NewsListView> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (!_scrollController.hasClients) return;
+
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.position.pixels;
+
+    if (currentScroll >= maxScroll - 200) {
+      context.read<HomeCubit>().fetchMoreNews();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +74,25 @@ class NewsListView extends StatelessWidget {
           onRefresh: () => context.read<HomeCubit>().fetchNews(),
           color: colors.primary,
           child: ListView.builder(
-            itemCount: state.articles.length,
+            controller: _scrollController,
+            itemCount: state.articles.length + (state.hasReachedMax ? 0 : 1),
             physics: const BouncingScrollPhysics(),
             padding: EdgeInsets.only(bottom: 16.h),
             itemBuilder: (context, index) {
+              if (index >= state.articles.length) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.h),
+                  child: Center(
+                    child: state.isLoadingMore
+                        ? CircularProgressIndicator.adaptive(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              colors.primary,
+                            ),
+                          )
+                        : const SizedBox.shrink(),
+                  ),
+                );
+              }
               return NewsCardTile(article: state.articles[index]);
             },
           ),

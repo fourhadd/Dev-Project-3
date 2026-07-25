@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_text_styles.dart';
 import 'package:news_feed/features/news/data/models/article_model.dart';
@@ -46,29 +47,21 @@ class NewsCardTile extends StatelessWidget {
                     borderRadius: BorderRadius.vertical(
                       top: Radius.circular(16.r),
                     ),
-                    child: Image.network(
-                      article.imageUrl ?? 'https://via.placeholder.com/400x200',
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          article.imageUrl ??
+                          'https://via.placeholder.com/400x200',
                       height: 200.h,
                       width: double.infinity,
                       fit: BoxFit.cover,
-                      frameBuilder:
-                          (context, child, frame, wasSynchronouslyLoaded) {
-                            if (wasSynchronouslyLoaded) return child;
-                            if (frame == null) {
-                              return ImageShimmerPlaceholder(
-                                height: 200.h,
-                                borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(16.r),
-                                ),
-                              );
-                            }
-                            return AnimatedOpacity(
-                              opacity: 1.0,
-                              duration: const Duration(milliseconds: 300),
-                              child: child,
-                            );
-                          },
-                      errorBuilder: (context, error, stackTrace) => Container(
+                      fadeInDuration: const Duration(milliseconds: 300),
+                      placeholder: (context, url) => ImageShimmerPlaceholder(
+                        height: 200.h,
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(16.r),
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => Container(
                         height: 200.h,
                         color: colors.background,
                         alignment: Alignment.center,

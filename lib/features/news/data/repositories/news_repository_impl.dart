@@ -27,12 +27,14 @@ class NewsRepositoryImpl implements NewsRepository {
 
   @override
   Future<Either<Failure, List<ArticleEntity>>> getArticlesByCategory(
-    String category,
-  ) async {
+    String category, {
+    int page = 1,
+  }) async {
     if (await _isConnected()) {
       try {
         final remoteArticles = await remoteDataSource.getArticlesByCategory(
           category,
+          page: page,
         );
         return Right(remoteArticles);
       } on ServerException {

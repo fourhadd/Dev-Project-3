@@ -109,6 +109,20 @@ Tətbiq [The Guardian Content API](https://open-platform.theguardian.com/documen
 - Bookmarklar → saxlanılan məqalələr
 - Tənzimləmələr → tema və şrift tənzimləmələri
 
+## 📸 Ekran görüntüləri
+
+| Onboarding | Ana səhifə | Axtarış |
+|---|---|---|
+| ![Onboarding](screenshots/onboarding.png) | ![Ana səhifə](screenshots/home.png) | ![Axtarış](screenshots/search.png) |
+
+| Bookmarklar | Tənzimləmələr | Maraqları redaktə et |
+|---|---|---|
+| ![Bookmarklar](screenshots/bookmarks.png) | ![Tənzimləmələr](screenshots/settings.png) | ![Maraqları redaktə et](screenshots/interests_edit.png) |
+
+| Məqalə təfərrüatı |
+|---|
+| ![Məqalə təfərrüatı](screenshots/article_detail.png) |
+
 ## 📝 Lisenziya
 
 Bu layihə təhsil/nümayiş məqsədləri üçün hazırlanmışdır.

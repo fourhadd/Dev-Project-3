@@ -5,7 +5,10 @@ import '../../../../core/error/exceptions.dart';
 import '../models/article_model.dart';
 
 abstract class NewsRemoteDataSource {
-  Future<List<ArticleModel>> getArticlesByCategory(String category);
+  Future<List<ArticleModel>> getArticlesByCategory(
+    String category, {
+    int page = 1,
+  });
   Future<List<ArticleModel>> searchArticles(String query);
 }
 
@@ -15,11 +18,16 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
   NewsRemoteDataSourceImpl(this._dio);
 
   @override
-  Future<List<ArticleModel>> getArticlesByCategory(String category) async {
+  Future<List<ArticleModel>> getArticlesByCategory(
+    String category, {
+    int page = 1,
+  }) async {
     try {
       final Map<String, dynamic> queryParams = {
         'show-fields': 'headline,body,thumbnail,byline',
         'api-key': ApiConstants.apiKey,
+        'page': page,
+        'page-size': ApiConstants.pageSize,
       };
 
       if (category.toLowerCase() != 'all') {

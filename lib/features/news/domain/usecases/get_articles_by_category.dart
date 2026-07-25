@@ -5,13 +5,26 @@ import '../../../../core/usecase/usecase.dart';
 import '../entities/article_entity.dart';
 import '../repositories/news_repository.dart';
 
-class GetArticlesByCategory implements UseCase<List<ArticleEntity>, String> {
+class GetArticlesByCategoryParams {
+  final String category;
+  final int page;
+
+  const GetArticlesByCategoryParams({required this.category, this.page = 1});
+}
+
+class GetArticlesByCategory
+    implements UseCase<List<ArticleEntity>, GetArticlesByCategoryParams> {
   final NewsRepository repository;
 
   GetArticlesByCategory(this.repository);
 
   @override
-  Future<Either<Failure, List<ArticleEntity>>> call(String category) async {
-    return await repository.getArticlesByCategory(category);
+  Future<Either<Failure, List<ArticleEntity>>> call(
+    GetArticlesByCategoryParams params,
+  ) async {
+    return await repository.getArticlesByCategory(
+      params.category,
+      page: params.page,
+    );
   }
 }

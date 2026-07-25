@@ -5,8 +5,9 @@ import '../entities/article_entity.dart';
 
 abstract class NewsRepository {
   Future<Either<Failure, List<ArticleEntity>>> getArticlesByCategory(
-    String category,
-  );
+    String category, {
+    int page = 1,
+  });
   Future<Either<Failure, List<ArticleEntity>>> searchArticles(String query);
   Future<Either<Failure, List<ArticleEntity>>> getBookmarkedArticles();
   Future<Either<Failure, void>> toggleBookmark(ArticleEntity article);

@@ -9,12 +9,18 @@ class HomeState extends Equatable {
   final List<ArticleModel> articles;
   final String selectedCategory;
   final String? errorMessage;
+  final int currentPage;
+  final bool hasReachedMax;
+  final bool isLoadingMore;
 
   const HomeState({
     this.status = HomeStatus.initial,
     this.articles = const [],
     this.selectedCategory = 'All',
     this.errorMessage,
+    this.currentPage = 1,
+    this.hasReachedMax = false,
+    this.isLoadingMore = false,
   });
 
   HomeState copyWith({
@@ -22,15 +28,29 @@ class HomeState extends Equatable {
     List<ArticleModel>? articles,
     String? selectedCategory,
     String? errorMessage,
+    int? currentPage,
+    bool? hasReachedMax,
+    bool? isLoadingMore,
   }) {
     return HomeState(
       status: status ?? this.status,
       articles: articles ?? this.articles,
       selectedCategory: selectedCategory ?? this.selectedCategory,
       errorMessage: errorMessage ?? this.errorMessage,
+      currentPage: currentPage ?? this.currentPage,
+      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+      isLoadingMore: isLoadingMore ?? this.isLoadingMore,
     );
   }
 
   @override
-  List<Object?> get props => [status, articles, selectedCategory, errorMessage];
+  List<Object?> get props => [
+    status,
+    articles,
+    selectedCategory,
+    errorMessage,
+    currentPage,
+    hasReachedMax,
+    isLoadingMore,
+  ];
 }
