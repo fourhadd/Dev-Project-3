@@ -111,17 +111,23 @@ Tətbiq [The Guardian Content API](https://open-platform.theguardian.com/documen
 
 ## 📸 Ekran görüntüləri
 
-| Onboarding | Ana səhifə | Axtarış |
-|---|---|---|
-| ![Onboarding](screenshots/onboarding.png) | ![Ana səhifə](screenshots/home.png) | ![Axtarış](screenshots/search.png) |
-
-| Bookmarklar | Tənzimləmələr | Maraqları redaktə et |
-|---|---|---|
-| ![Bookmarklar](screenshots/bookmarks.png) | ![Tənzimləmələr](screenshots/settings.png) | ![Maraqları redaktə et](screenshots/interests_edit.png) |
-
-| Məqalə təfərrüatı |
-|---|
-| ![Məqalə təfərrüatı](screenshots/article_detail.png) |
+<table>
+<tr>
+<td align="center"><b>Onboarding</b><br/><img src="screenshots/onboarding.png" width="220" /></td>
+<td align="center"><b>Ana səhifə</b><br/><img src="screenshots/home.png" width="220" /></td>
+<td align="center"><b>Axtarış</b><br/><img src="screenshots/search.png" width="220" /></td>
+</tr>
+<tr>
+<td align="center"><b>Bookmarklar</b><br/><img src="screenshots/bookmarks.png" width="220" /></td>
+<td align="center"><b>Tənzimləmələr</b><br/><img src="screenshots/settings.png" width="220" /></td>
+<td align="center"><b>Maraqları redaktə et</b><br/><img src="screenshots/interests_edit.png" width="220" /></td>
+</tr>
+<tr>
+<td align="center"><b>Məqalə təfərrüatı</b><br/><img src="screenshots/article_detail.png" width="220" /></td>
+<td></td>
+<td></td>
+</tr>
+</table>
 
 ## 📝 Lisenziya
 
